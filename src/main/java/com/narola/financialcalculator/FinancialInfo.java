@@ -1,5 +1,8 @@
 package com.narola.financialcalculator;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class FinancialInfo {
     int currentYear;
 

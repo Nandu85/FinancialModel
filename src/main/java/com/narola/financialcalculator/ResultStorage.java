@@ -1,10 +1,17 @@
 package com.narola.financialcalculator;
 
+import org.springframework.stereotype.Component;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class ResultStorage {
-    private List<Result> results;
+    private static List<Result> results;
+
+    public ResultStorage getInstance(){
+        return this;
+    }
 
     public List<Result> getResults() {
         if(results == null){

@@ -52,6 +52,10 @@ public class ResultDAO {
         return results;
     }
 
+    public ResultStorage getResults(){
+        return results;
+    }
+
 
 //    public void main(String[] args) {
 //        FinancialInfo info = new FinancialInfo();
