@@ -1,17 +1,15 @@
 package com.narola.financialcalculator;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import javax.ws.rs.ApplicationPath;
-import javax.ws.rs.core.Application;
+import java.util.List;
 
 //@ApplicationPath("/result")
-@RestController
+@Controller
 @RequestMapping("/information")
-public class HelloApplication extends Application {
+public class HelloApplication{
 
     @Autowired
     private ResultDAO resultDAO;
@@ -19,13 +17,17 @@ public class HelloApplication extends Application {
     @GetMapping(
             value = "/getResult",
             produces = "application/json")
-    public ResultStorage getEmployees() {
+    public List<Result> getResults() {
         return resultDAO.getResults();
     }
 
-    @PostMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseBody
-    public ResultStorage giveInfo(@RequestBody FinancialInfo info){
+    @PostMapping(value = "/")
+    public @ResponseBody List<Result> giveInfo(@RequestBody FinancialInfo info) {
         return resultDAO.getResults(info);
+    }
+
+    @GetMapping(value = "/hello",produces = "text/plain")
+    public String hello() {
+        return "Hello, World!";
     }
 }

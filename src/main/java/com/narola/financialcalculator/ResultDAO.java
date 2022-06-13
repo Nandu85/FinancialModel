@@ -8,10 +8,9 @@ import java.util.List;
 @Repository
 public class ResultDAO {
 
-    private static ResultStorage results = new ResultStorage();
     List<Result> list = null;
 
-    public ResultStorage getResults(FinancialInfo financialInfo){
+    public List<Result> getResults(FinancialInfo financialInfo) {
         list = new ArrayList<>();
 
         Result result1 = new Result();
@@ -34,7 +33,7 @@ public class ResultDAO {
             result2.setCurrentYear(result1.getCurrentYear()+1);
             result2.setIncome(result1.getIncome()*1.06);
             result2.setExpense(result1.getExpense()*1.06);
-            balance = financialInfo.getFixedAmount()+financialInfo.getIncome()-financialInfo.getExpense();
+            balance = result1.getTotalBalance()+result2.getIncome()-result2.getExpense();
             result2.setBalance(balance);
             result2.setInvestment5(balance*0.2);
             result2.setInvestment8(balance*0.3);
@@ -48,12 +47,11 @@ public class ResultDAO {
             result1 = result2;
         }
 
-        results.setResults(list);
-        return results;
+        return list;
     }
 
-    public ResultStorage getResults(){
-        return results;
+    public List<Result> getResults(){
+        return list;
     }
 
 
