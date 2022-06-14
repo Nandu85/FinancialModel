@@ -17,6 +17,7 @@ public class HelloApplication{
     @GetMapping(
             value = "/getResult",
             produces = "application/json")
+    @ResponseBody
     public List<Result> getResults() {
         return resultDAO.getResults();
     }
@@ -24,6 +25,12 @@ public class HelloApplication{
     @PostMapping(value = "/")
     public @ResponseBody List<Result> giveInfo(@RequestBody FinancialInfo info) {
         return resultDAO.getResults(info);
+    }
+
+    @GetMapping(value = "/othervalues")
+    @ResponseBody
+    public MoreValues getVals(FinancialInfo info) {
+        return resultDAO.getOtherValues();
     }
 
     @GetMapping(value = "/hello",produces = "text/plain")
