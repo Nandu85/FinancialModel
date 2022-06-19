@@ -1,79 +1,86 @@
 package com.narola.financialcalculator;
 
-import org.springframework.stereotype.Component;
-
 public class FinancialInfo {
-    int currentYear;
+	int currentYear;
 
+	int retireMentYear;
+	double fixedAmount;
+	double income;
+	double expense;
+	double eGrowthRate;
+	double iGrowthRate;
+	int noOfYears;
+	double savingAmount;
 
-    double fixedAmount;
-    double income;
-    double expense;
-    double eGrowthRate;
-    double iGrowthRate;
-    int noOfYears;
-    double savingAmount;
+	public int getCurrentYear() {
+		return currentYear;
+	}
 
-    public int getCurrentYear() {
-        return currentYear;
-    }
-    public void setCurrentYear(int currentYear) {
-        this.currentYear = currentYear;
-    }
+	public void setCurrentYear(int currentYear) {
+		this.currentYear = currentYear;
+	}
 
-    public double getFixedAmount() {
-        return fixedAmount;
-    }
+	public int getRetireMentYear() {
+		return retireMentYear;
+	}
 
-    public void setFixedAmount(double fixedAmount) {
-        this.fixedAmount = fixedAmount;
-    }
+	public void setRetireMentYear(int retireMentYear) {
+		this.retireMentYear = retireMentYear;
+	}
 
-    public double getIncome() {
-        return income;
-    }
+	public double getFixedAmount() {
+		return fixedAmount;
+	}
 
-    public void setIncome(double income) {
-        this.income = income;
-    }
+	public void setFixedAmount(double fixedAmount) {
+		this.fixedAmount = fixedAmount;
+	}
 
-    public double getExpense() {
-        return expense;
-    }
+	public double getIncome() {
+		return income;
+	}
 
-    public void setExpense(double expense) {
-        this.expense = expense;
-    }
+	public void setIncome(double income) {
+		this.income = income;
+	}
 
-    public double geteGrowthRate() {
-        return eGrowthRate;
-    }
+	public double getExpense() {
+		return expense;
+	}
 
-    public void seteGrowthRate(double eGrowthRate) {
-        this.eGrowthRate = eGrowthRate;
-    }
+	public void setExpense(double expense) {
+		this.expense = expense;
+	}
 
-    public double getiGrowthRate() {
-        return iGrowthRate;
-    }
+	public double geteGrowthRate() {
+		return eGrowthRate;
+	}
 
-    public void setiGrowthRate(double iGrowthRate) {
-        this.iGrowthRate = iGrowthRate;
-    }
+	public void seteGrowthRate(double eGrowthRate) {
+		this.eGrowthRate = eGrowthRate;
+	}
 
-    public int getNoOfYears() {
-        return noOfYears;
-    }
+	public double getiGrowthRate() {
+		return iGrowthRate;
+	}
 
-    public void setNoOfYears(int noOfYears) {
-        this.noOfYears = noOfYears;
-    }
+	public void setiGrowthRate(double iGrowthRate) {
+		this.iGrowthRate = iGrowthRate;
+	}
 
-    public double getSavingAmount() {
-        return savingAmount;
-    }
+	public int getNoOfYears() {
+		return noOfYears;
+	}
 
-    public void setSavingAmount(double savingAmount) {
-        this.savingAmount = savingAmount;
-    }
+	public void setNoOfYears(int noOfYears) {
+		this.noOfYears = noOfYears;
+	}
+
+	public double getSavingAmount() {
+		return savingAmount;
+	}
+
+	public void setSavingAmount(double savingAmount) {
+		this.savingAmount = savingAmount;
+	}
 }
