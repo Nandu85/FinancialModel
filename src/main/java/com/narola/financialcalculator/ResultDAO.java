@@ -41,10 +41,10 @@ public class ResultDAO {
 		for (int i = 1; i <= financialInfo.getNoOfYears(); i++) {
 			Result result2 = new Result();
 			result2.setCurrentYear(result1.getCurrentYear() + 1);
-			result2.setIncome(round(result1.getIncome() * (1 + info.getiGrowthRate())));
+			result2.setIncome(round(result1.getIncome() * (1 + info.getiGrowthRate()/100)));
 			if(result1.getCurrentYear()>=retirementYear)
 				result1.setIncome(0);
-			result2.setExpense(round(result1.getExpense() * (1 + info.geteGrowthRate())));
+			result2.setExpense(round(result1.getExpense() * (1 + info.geteGrowthRate()/100)));
 			balance = result1.getTotalBalance() + result2.getIncome() - result2.getExpense();
 			result2.setBalance(round(balance));
 			result2.setInvestment5(round(balance * 0.2));

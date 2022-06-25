@@ -64,35 +64,35 @@ table {
 			action="<%=request.getContextPath()%>/information/" method="post">
 			<div class="form-group">
 				<input type="text" class="form-control" name="fixedAmount"
-					placeholder="Fixed Amount">
+					placeholder="Fixed Amount(in lacs)" value="${info.fixedAmount}">
 			</div>
 			<div class="form-group">
 				<input type="text" class="form-control" name="income"
-					placeholder="Income">
+					placeholder="Income(in lacs)" value="${info.income}">
 			</div>
 			<div class="form-group">
 				<input type="text" class="form-control" name="expense"
-					placeholder="Expense">
+					placeholder="Expense(in lacs)" value="${info.expense}">
 			</div>
 			<div class="form-group">
 				<input type="text" class="form-control" name="eGrowthRate"
-					placeholder="Expense GrowthRate">
+					placeholder="Expense GrowthRate(%)" value="${info.eGrowthRate}">
 			</div>
 			<div class="form-group">
 				<input type="text" class="form-control" name="iGrowthRate"
-					placeholder="IncomeGrowthRate">
+					placeholder="IncomeGrowthRate(%)" value="${info.iGrowthRate}">
 			</div>
 			<div class="form-group">
 				<input type="text" class="form-control" name="noOfYears"
-					placeholder="No Of Years">
+					placeholder="No Of Years" value="${info.noOfYears}">
 			</div>
 			<div class="form-group">
 				<input type="text" class="form-control" name="currentYear"
-					placeholder="Starting Year">
+					placeholder="Starting Year" value="${info.currentYear}">
 			</div>
 			<div class="form-group">
 				<input type="text" class="form-control" name="retireMentYear"
-					placeholder="Retirement Year">
+					placeholder="Retirement Year" value="${info.retireMentYear}">
 			</div>
 
 			<button type="submit" class="btn btn-default">Submit</button>

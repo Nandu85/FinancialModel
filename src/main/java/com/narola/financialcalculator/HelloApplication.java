@@ -26,6 +26,7 @@ public class HelloApplication {
 	@PostMapping(value = "/",consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
 	public ModelAndView giveInfo(FinancialInfo info) {
 		ModelAndView modelAndView = new ModelAndView("index");
+		modelAndView.addObject("info",info);
 		modelAndView.addObject("results", resultDAO.getResults(info));
 		modelAndView.addObject("values", resultDAO.getOtherValues());
 		return modelAndView;
