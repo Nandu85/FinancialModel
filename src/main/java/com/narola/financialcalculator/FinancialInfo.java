@@ -1,6 +1,16 @@
 package com.narola.financialcalculator;
 
 public class FinancialInfo {
+	int infoId;
+
+	public int getInfoId() {
+		return infoId;
+	}
+
+	public void setInfoId(int infoId) {
+		this.infoId = infoId;
+	}
+
 	int currentYear;
 
 	int retireMentYear;

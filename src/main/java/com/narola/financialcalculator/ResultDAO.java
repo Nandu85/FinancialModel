@@ -1,7 +1,9 @@
 package com.narola.financialcalculator;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,17 +16,23 @@ public class ResultDAO {
 
 	FinancialInfo info = null;
 
+    @Autowired
+    DBConnection dbConnection;
+
 	public List<Result> getResults(FinancialInfo financialInfo) {
 		list = new ArrayList<>();
 
 		info = financialInfo;
+
+        info = AddFinanancialInfo(info);
+
 		int retirementYear = financialInfo.getRetireMentYear();
 		Result result1 = new Result();
 		result1.setCurrentYear(financialInfo.getCurrentYear());
 		result1.setIncome(financialInfo.getIncome());
 		if(result1.getCurrentYear()==retirementYear)
 			result1.setIncome(0);
-		
+
 		result1.setExpense(financialInfo.getExpense());
 		double balance = financialInfo.getFixedAmount() + financialInfo.getIncome() - financialInfo.getExpense();
 		result1.setBalance(round(balance));
@@ -90,5 +98,46 @@ public class ResultDAO {
 			return (double) (Math.ceil(d * 100)) / 100;
 		}
 	}
+
+    public FinancialInfo AddFinanancialInfo(FinancialInfo info) {
+        Connection con = dbConnection.getConnection();
+
+        PreparedStatement ps = null;
+        ResultSet resultSet = null;
+        try {
+            ps = con.prepareStatement("INSERT INTO `finnancialinfo`\n" +
+                            "(`fixedAmount`,`income`,\n" +
+                            "`expense`,`incomeGrowthRate`,\n" +
+                            "`expenseGrowthRate`,`noOfYears`,\n" +
+                            "`currentYear`,`retirementYear`)\n" +
+                            "VALUES (?,?,?,?,?,?,?,?);\n",
+                    Statement.RETURN_GENERATED_KEYS);
+            ps.setDouble(1, info.getFixedAmount());
+            ps.setDouble(2, info.getIncome());
+            ps.setDouble(3, info.getExpense());
+            ps.setDouble(4, info.getiGrowthRate());
+
+            ps.setDouble(5, info.geteGrowthRate());
+            ps.setDouble(6, info.getNoOfYears());
+            ps.setDouble(7, info.getCurrentYear());
+            ps.setDouble(8, info.getRetireMentYear());
+
+            ps.executeUpdate();
+            resultSet = ps.getGeneratedKeys();
+            if (resultSet.next()) {
+
+                info.setInfoId(resultSet.getInt(1));
+
+
+            }
+        } catch (SQLException e) {
+            throw new DatabaseException("Error while insert cart", e);
+        } catch (DatabaseException e) {
+            throw e;
+        } finally {
+            DBConnection.releaseResource(ps, resultSet);
+        }
+        return info;
+    }
 
 }
